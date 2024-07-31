@@ -6,4 +6,4 @@ Polling app using local storage for memory in the browser (to maintain state acr
 
 [Multimodal LLM Playground](https://multi-modal.ai.cloudflare.com/)
 
-[Slides](https://www.canva.com/design/DAGEq90dxdU/VbgkbSYoTlOYI8uzDdTTlg/edit?utm_content=DAGEq90dxdU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[Slides](https://www.canva.com/design/DAGEq90dxdU/MkgwbLWX_w47NyJ2FaDHdA/view?utm_content=DAGEq90dxdU&utm_campaign=designshare&utm_medium=link&utm_source=editor)
