@@ -1,90 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vote for Your Favorite</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 100%;
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #ff7e5f;
-        }
-        button {
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff7e5f;
-            color: white;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        button:hover {
-            background-color: #feb47b;
-            transform: scale(1.05);
-        }
-        button:active {
-            background-color: #e86e5a;
-        }
-        .vote-count {
-            font-size: 1.5rem;
-            margin: 0;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote for Your Favorite Pizza</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffcc33, #ff6699);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+    .button {
+      margin: 10px;
+      width: 150px;
+      transition: transform 0.2s;
+    }
+    .button:hover {
+      transform: scale(1.1);
+    }
+    .count {
+      font-size: 2rem;
+      margin-left: 10px;
+    }
+    .reset-btn {
+      margin-top: 20px;
+      background-color: #ff5555;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .reset-btn:hover {
+      background-color: #ff3333;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Vote for Your Favorite</h1>
-        <button id="deepDishBtn">Deep Dish Pizza: <span id="deepDishCount" class="vote-count">0</span></button>
-        <button id="kansasCityBtn">Kansas City BBQ: <span id="kansasCityCount" class="vote-count">0</span></button>
+  <div class="container">
+    <h1>Vote for Your Favorite Pizza</h1>
+    <div>
+      <button id="deepDishBtn" class="button is-primary">Deep Dish Pizza</button>
+      <span id="deepDishCount" class="count">0</span>
     </div>
-    <script>
-        // Load vote counts from local storage or initialize if not present
-        const deepDishCount = localStorage.getItem('deepDishCount') || 0;
-        const kansasCityCount = localStorage.getItem('kansasCityCount') || 0;
+    <div>
+      <button id="thinCrustBtn" class="button is-primary">Thin Crust</button>
+      <span id="thinCrustCount" class="count">0</span>
+    </div>
+    <button id="resetBtn" class="reset-btn">Reset Votes</button>
+  </div>
 
-        // Display initial vote counts
-        document.getElementById('deepDishCount').textContent = deepDishCount;
-        document.getElementById('kansasCityCount').textContent = kansasCityCount;
+  <script>
+    let deepDishCount = localStorage.getItem('deepDishCount') ? parseInt(localStorage.getItem('deepDishCount')) : 0;
+    let thinCrustCount = localStorage.getItem('thinCrustCount') ? parseInt(localStorage.getItem('thinCrustCount')) : 0;
 
-        // Increment and save vote counts
-        document.getElementById('deepDishBtn').addEventListener('click', () => {
-            const count = parseInt(document.getElementById('deepDishCount').textContent, 10) + 1;
-            document.getElementById('deepDishCount').textContent = count;
-            localStorage.setItem('deepDishCount', count);
-        });
+    document.getElementById('deepDishCount').innerText = deepDishCount;
+    document.getElementById('thinCrustCount').innerText = thinCrustCount;
 
-        document.getElementById('kansasCityBtn').addEventListener('click', () => {
-            const count = parseInt(document.getElementById('kansasCityCount').textContent, 10) + 1;
-            document.getElementById('kansasCityCount').textContent = count;
-            localStorage.setItem('kansasCityCount', count);
-        });
-    </script>
+    document.getElementById('deepDishBtn').addEventListener('click', function() {
+      deepDishCount++;
+      localStorage.setItem('deepDishCount', deepDishCount);
+      document.getElementById('deepDishCount').innerText = deepDishCount;
+    });
+
+    document.getElementById('thinCrustBtn').addEventListener('click', function() {
+      thinCrustCount++;
+      localStorage.setItem('thinCrustCount', thinCrustCount);
+      document.getElementById('thinCrustCount').innerText = thinCrustCount;
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      deepDishCount = 0;
+      thinCrustCount = 0;
+      localStorage.setItem('deepDishCount', deepDishCount);
+      localStorage.setItem('thinCrustCount', thinCrustCount);
+      document.getElementById('deepDishCount').innerText = deepDishCount;
+      document.getElementById('thinCrustCount').innerText = thinCrustCount;
+    });
+  </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
