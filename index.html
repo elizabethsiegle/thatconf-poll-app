@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for Your Favorite</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff7e5f;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff7e5f;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #feb47b;
+            transform: scale(1.05);
+        }
+        button:active {
+            background-color: #e86e5a;
+        }
+        .vote-count {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vote for Your Favorite</h1>
+        <button id="deepDishBtn">Deep Dish Pizza: <span id="deepDishCount" class="vote-count">0</span></button>
+        <button id="kansasCityBtn">Kansas City BBQ: <span id="kansasCityCount" class="vote-count">0</span></button>
+    </div>
+    <script>
+        // Load vote counts from local storage or initialize if not present
+        const deepDishCount = localStorage.getItem('deepDishCount') || 0;
+        const kansasCityCount = localStorage.getItem('kansasCityCount') || 0;
+
+        // Display initial vote counts
+        document.getElementById('deepDishCount').textContent = deepDishCount;
+        document.getElementById('kansasCityCount').textContent = kansasCityCount;
+
+        // Increment and save vote counts
+        document.getElementById('deepDishBtn').addEventListener('click', () => {
+            const count = parseInt(document.getElementById('deepDishCount').textContent, 10) + 1;
+            document.getElementById('deepDishCount').textContent = count;
+            localStorage.setItem('deepDishCount', count);
+        });
+
+        document.getElementById('kansasCityBtn').addEventListener('click', () => {
+            const count = parseInt(document.getElementById('kansasCityCount').textContent, 10) + 1;
+            document.getElementById('kansasCityCount').textContent = count;
+            localStorage.setItem('kansasCityCount', count);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
